@@ -7,10 +7,10 @@ import lombok.*;
 @NoArgsConstructor
 @AllArgsConstructor
 @ToString
-public class Item {
 
+public class OrderDetails {
+
+    private String id;
     private String code;
-    private String description;
-    private Double unitPrice;
     private Integer qty;
 }
