@@ -1,5 +1,7 @@
-package edu.icet.model.dto;
+package edu.icet.model.entity;
 
+import jakarta.persistence.Entity;
+import jakarta.persistence.Id;
 import lombok.*;
 
 @Getter
@@ -7,11 +9,12 @@ import lombok.*;
 @NoArgsConstructor
 @AllArgsConstructor
 @ToString
-public class Item {
+@Entity
+public class ItemEntity {
 
+    @Id
     private String code;
     private String description;
     private Double unitPrice;
     private Integer qty;
-
 }
