@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class ItemService {
@@ -38,5 +39,28 @@ public class ItemService {
                 item.getQty()
         );
         itemRepository.save(entity);
+    }
+
+
+    public void update(Item item) {
+        Optional<ItemEntity> optional = itemRepository.findById(item.getCode());
+        ItemEntity entity = optional.orElseThrow(() ->
+                new RuntimeException("Item not found with code: " + item.getCode())
+        );
+
+        entity.setDescription(item.getDescription());
+        entity.setUnitPrice(item.getUnitPrice());
+        entity.setQty(item.getQty());
+
+        itemRepository.save(entity);
+    }
+
+    public void delete(String code) {
+        Optional<ItemEntity> optional = itemRepository.findById(code);
+        ItemEntity entity = optional.orElseThrow(() ->
+                new RuntimeException("Item not found with code: " + code)
+        );
+
+        itemRepository.delete(entity);
     }
 }
